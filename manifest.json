@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Video Catcher All Formats",
+  "version": "2.1.0",
+  "description": "Detect direct video, audio and HLS media. Download original files or supported unencrypted on-demand streams.",
+  "permissions": [
+    "downloads",
+    "storage",
+    "tabs",
+    "webRequest"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Video Catcher All Formats"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ]
+}
