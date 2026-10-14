@@ -1,0 +1,26 @@
+name: Build extension
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate JavaScript and Manifest
+        run: |
+          node --check background.js
+          node --check content.js
+          node --check popup.js
+          node --check downloader.js
+          node -e "const m=require('./manifest.json');if(m.manifest_version!==3)process.exit(1)"
+      - name: Create extension ZIP
+        run: zip -r video-catcher-all-formats.zip manifest.json background.js content.js popup.html popup.css popup.js downloader.html downloader.js
+      - uses: actions/upload-artifact@v4
+        with:
+          name: video-catcher-all-formats-v2.1
+          path: video-catcher-all-formats.zip
