@@ -1,12 +1,13 @@
 {
   "manifest_version": 3,
   "name": "Video Catcher All Formats",
-  "version": "2.2.0",
-  "description": "Detect direct video, audio and HLS media. Download original files or supported unencrypted on-demand streams.",
+  "version": "2.9.0",
+  "description": "Detect media and download supported unencrypted HLS and static DASH playlists; keep original formats and tracks.",
   "permissions": [
     "downloads",
     "storage",
     "tabs",
+    "unlimitedStorage",
     "webRequest"
   ],
   "host_permissions": [
@@ -17,7 +18,13 @@
   },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Video Catcher All Formats"
+    "default_title": "Video Catcher All Formats",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
   },
   "content_scripts": [
     {
@@ -31,5 +38,11 @@
       "run_at": "document_idle",
       "all_frames": true
     }
-  ]
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
 }
