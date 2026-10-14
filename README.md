@@ -10,6 +10,12 @@
 [![License](https://img.shields.io/badge/license-MIT-8b5cf6?style=for-the-badge)](LICENSE)
 [![Package](https://github.com/MoonDevil1/Video-Catcher-All-Formats/actions/workflows/package.yml/badge.svg)](https://github.com/MoonDevil1/Video-Catcher-All-Formats/actions/workflows/package.yml)
 
+<a href="https://github.com/MoonDevil1/Video-Catcher-All-Formats/archive/refs/heads/main.zip"><img alt="Download ZIP" src="https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_DOWNLOAD-ZIP_FILE-8b5cf6?style=for-the-badge&logo=github&logoColor=white"></a>
+
+**[⬇️ Download Video Catcher All Formats — ZIP](https://github.com/MoonDevil1/Video-Catcher-All-Formats/archive/refs/heads/main.zip)**
+
+_Unzip the download, then install through Chrome → Extensions → Developer mode → Load unpacked._
+
 **[Features](#-features) · [Install](#-installation) · [Limitations](#-current-limitations) · [Downloads](#-download-zip)**
 
 </div>
