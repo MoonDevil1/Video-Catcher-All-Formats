@@ -1,0 +1,3 @@
+# Privacy Policy
+
+Video Catcher All Formats detects media request URLs within the browser and stores discovered URLs locally in Chrome session storage for the corresponding tab. It uses the browser downloads API to save files when a user clicks Download Media. It does not run analytics, collect account credentials, operate a tracking endpoint, sell personal data or send detected media URLs to the extension developer. The extension requests site access and webRequest for detection, tabs for active-tab context, storage for tab-local temporary results, and downloads for saving chosen files. Website servers may receive ordinary network requests when users download media. This policy applies to the source code published in this repository.
