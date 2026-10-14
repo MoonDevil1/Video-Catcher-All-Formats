@@ -1,26 +1,26 @@
-name: Build extension
+name: Package Video Catcher v2.9
 on:
   push:
     branches: [main]
   workflow_dispatch:
+permissions:
+  contents: read
 jobs:
   package:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: Validate JavaScript and Manifest
+      - name: Inspect official package
         run: |
-          node --check background.js
-          node --check content.js
-          node --check popup.js
-          node --check downloader.js
-          node -e "const m=require('./manifest.json');if(m.manifest_version!==3)process.exit(1)"
-      - name: Create extension ZIP
-        run: zip -r video-catcher-all-formats.zip manifest.json background.js content.js popup.html popup.css popup.js downloader.html downloader.js
+          unzip -t downloads/Video-Catcher-All-Formats-v2.9.0.zip | tail -n 2
+          python3 - <<'PY'
+          import json,zipfile
+          with zipfile.ZipFile("downloads/Video-Catcher-All-Formats-v2.9.0.zip") as z:
+              m=json.loads(z.read("manifest.json"))
+              assert m["manifest_version"]==3 and m["version"]=="2.9.0"
+              for path in ("background.js","content.js","popup.html","popup.js","downloader.js"): assert path in z.namelist()
+          PY
       - uses: actions/upload-artifact@v4
         with:
-          name: video-catcher-all-formats-v2.1
-          path: video-catcher-all-formats.zip
+          name: Video-Catcher-All-Formats-v2.9.0
+          path: downloads/Video-Catcher-All-Formats-v2.9.0.zip

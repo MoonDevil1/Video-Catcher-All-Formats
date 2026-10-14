@@ -5,14 +5,14 @@
 
 ![Video Catcher Logo](assets/logo.svg)
 
-[![Version](https://img.shields.io/badge/version-2.2.0-8b5cf6?style=for-the-badge)](#)
+[![Version](https://img.shields.io/badge/version-2.9.0-8b5cf6?style=for-the-badge)](#)
 [![MV3](https://img.shields.io/badge/Chrome-Manifest%20V3-171327?style=for-the-badge&logo=googlechrome)](#)
 [![License](https://img.shields.io/badge/license-MIT-8b5cf6?style=for-the-badge)](LICENSE)
 [![Package](https://github.com/MoonDevil1/Video-Catcher-All-Formats/actions/workflows/package.yml/badge.svg)](https://github.com/MoonDevil1/Video-Catcher-All-Formats/actions/workflows/package.yml)
 
-<a href="https://github.com/MoonDevil1/Video-Catcher-All-Formats/raw/refs/heads/main/downloads/Video-Catcher-All-Formats-v2.2.0.zip"><img alt="Download ZIP" src="https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_DOWNLOAD-ZIP_FILE-8b5cf6?style=for-the-badge&logo=github&logoColor=white"></a>
+<a href="https://github.com/MoonDevil1/Video-Catcher-All-Formats/raw/refs/heads/main/downloads/Video-Catcher-All-Formats-v2.9.0.zip"><img alt="Download ZIP" src="https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_DOWNLOAD-ZIP_FILE-8b5cf6?style=for-the-badge&logo=github&logoColor=white"></a>
 
-**[⬇️ Download Video Catcher All Formats — ZIP](https://github.com/MoonDevil1/Video-Catcher-All-Formats/raw/refs/heads/main/downloads/Video-Catcher-All-Formats-v2.2.0.zip)**
+**[⬇️ Download Video Catcher All Formats — ZIP](https://github.com/MoonDevil1/Video-Catcher-All-Formats/raw/refs/heads/main/downloads/Video-Catcher-All-Formats-v2.9.0.zip)**
 
 _Unzip the download, then install through Chrome → Extensions → Developer mode → Load unpacked._
 
@@ -21,6 +21,12 @@ _Unzip the download, then install through Chrome → Extensions → Developer mo
 </div>
 
 ---
+
+## 🚀 Latest release — v2.9.0
+
+**[⬇️ Download the actual v2.9.0 extension ZIP](https://github.com/MoonDevil1/Video-Catcher-All-Formats/raw/refs/heads/main/downloads/Video-Catcher-All-Formats-v2.9.0.zip)** — the archive contains `manifest.json`, the extension scripts and icons, ready to extract and install via **Load unpacked**.
+
+v2.9 adds experimental static DASH numbered-segment support, audio rendition selection, smarter video naming, and a local FFmpeg mux helper; ad filtering and browser-level playback compatibility are not guaranteed. Download only media you have permission to save.
 
 ## ✨ Features
 
@@ -80,7 +86,7 @@ Downloads of direct media preserve the file's **original video and audio streams
 
 ## 📦 Download ZIP
 
-**[⬇️ Download the latest extension ZIP (v2.2.0)](https://github.com/MoonDevil1/Video-Catcher-All-Formats/raw/refs/heads/main/downloads/Video-Catcher-All-Formats-v2.2.0.zip)**. Extract it before using **Load unpacked**. GitHub Actions also produces build artifacts.
+**[⬇️ Download the latest extension ZIP (v2.9.0)](https://github.com/MoonDevil1/Video-Catcher-All-Formats/raw/refs/heads/main/downloads/Video-Catcher-All-Formats-v2.9.0.zip)**. Extract it before using **Load unpacked**. GitHub Actions also produces build artifacts.
 
 ## 🛠️ Development
 

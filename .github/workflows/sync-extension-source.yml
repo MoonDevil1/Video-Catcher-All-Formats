@@ -1,0 +1,40 @@
+name: Sync extension source from release ZIP
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'downloads/Video-Catcher-All-Formats-v2.9.0.zip'
+      - '.github/workflows/sync-extension-source.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Extract versioned source
+        run: |
+          mkdir -p /tmp/video-catcher
+          unzip -oq downloads/Video-Catcher-All-Formats-v2.9.0.zip -d /tmp/video-catcher
+          for file in manifest.json background.js content.js popup.html popup.js popup.css downloader.html downloader.js mux_original.py; do
+            cp "/tmp/video-catcher/$file" "$file"
+          done
+          mkdir -p icons
+          cp /tmp/video-catcher/icons/*.png icons/
+          node --check background.js
+          node --check content.js
+          node --check popup.js
+          node --check downloader.js
+          node -e 'if(require("./manifest.json").version!=="2.9.0")process.exit(1)'
+      - name: Commit synced source
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add manifest.json background.js content.js popup.html popup.js popup.css downloader.html downloader.js mux_original.py icons/
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: sync v2.9.0 source files [skip ci]"
+            git push
+          fi
