@@ -1,26 +1,48 @@
-name: Package Video Catcher v2.9
+name: Package Video Catcher v2.10
 on:
   push:
     branches: [main]
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   package:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Inspect official package
+      - name: Validate JavaScript and manifest
         run: |
-          unzip -t downloads/Video-Catcher-All-Formats-v2.9.0.zip | tail -n 2
+          node --check background.js
+          node --check content.js
+          node --check popup.js
+          node --check downloader.js
           python3 - <<'PY'
-          import json,zipfile
-          with zipfile.ZipFile("downloads/Video-Catcher-All-Formats-v2.9.0.zip") as z:
-              m=json.loads(z.read("manifest.json"))
-              assert m["manifest_version"]==3 and m["version"]=="2.9.0"
-              for path in ("background.js","content.js","popup.html","popup.js","downloader.js"): assert path in z.namelist()
+          import json, os
+          with open("manifest.json", encoding="utf-8") as f:
+              m=json.load(f)
+          assert m["manifest_version"] == 3
+          assert m["version"] == "2.10.0"
+          for path in ("background.js","content.js","popup.html","popup.js","downloader.html","downloader.js"):
+              assert os.path.isfile(path), f"Missing {path}"
           PY
+      - name: Build installable extension ZIP
+        run: |
+          mkdir -p downloads
+          rm -f downloads/Video-Catcher-All-Formats-v2.10.0.zip
+          zip -r downloads/Video-Catcher-All-Formats-v2.10.0.zip manifest.json background.js content.js popup.html popup.css popup.js downloader.html downloader.js icons assets LICENSE
+          unzip -t downloads/Video-Catcher-All-Formats-v2.10.0.zip | tail -n 2
+      - name: Publish ZIP to repository
+        if: github.event_name == 'push' && !contains(github.event.head_commit.message, '[skip package]')
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add downloads/Video-Catcher-All-Formats-v2.10.0.zip
+          if ! git diff --cached --quiet; then
+            git commit -m "Build Video Catcher v2.10.0 package [skip package]"
+            git push
+          fi
       - uses: actions/upload-artifact@v4
         with:
-          name: Video-Catcher-All-Formats-v2.9.0
-          path: downloads/Video-Catcher-All-Formats-v2.9.0.zip
+          name: Video-Catcher-All-Formats-v2.10.0
+          path: downloads/Video-Catcher-All-Formats-v2.10.0.zip
+          if-no-files-found: error
