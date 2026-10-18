@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Video Catcher All Formats",
-  "version": "2.9.0",
+  "version": "2.10.0",
   "description": "Detect media and download supported unencrypted HLS and static DASH playlists; keep original formats and tracks.",
   "permissions": [
     "downloads",

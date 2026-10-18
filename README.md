@@ -5,14 +5,14 @@
 
 ![Video Catcher Logo](assets/logo.svg)
 
-[![Version](https://img.shields.io/badge/version-2.9.0-8b5cf6?style=for-the-badge)](#)
+[![Version](https://img.shields.io/badge/version-2.10.0-8b5cf6?style=for-the-badge)](#)
 [![MV3](https://img.shields.io/badge/Chrome-Manifest%20V3-171327?style=for-the-badge&logo=googlechrome)](#)
 [![License](https://img.shields.io/badge/license-MIT-8b5cf6?style=for-the-badge)](LICENSE)
 [![Package](https://github.com/MoonDevil1/Video-Catcher-All-Formats/actions/workflows/package.yml/badge.svg)](https://github.com/MoonDevil1/Video-Catcher-All-Formats/actions/workflows/package.yml)
 
-<a href="https://github.com/MoonDevil1/Video-Catcher-All-Formats/raw/refs/heads/main/downloads/Video-Catcher-All-Formats-v2.9.0.zip"><img alt="Download ZIP" src="https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_DOWNLOAD-ZIP_FILE-8b5cf6?style=for-the-badge&logo=github&logoColor=white"></a>
+<a href="https://github.com/MoonDevil1/Video-Catcher-All-Formats/raw/refs/heads/main/downloads/Video-Catcher-All-Formats-v2.10.0.zip"><img alt="Download ZIP" src="https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_DOWNLOAD-ZIP_FILE-8b5cf6?style=for-the-badge&logo=github&logoColor=white"></a>
 
-**[⬇️ Download Video Catcher All Formats — ZIP](https://github.com/MoonDevil1/Video-Catcher-All-Formats/raw/refs/heads/main/downloads/Video-Catcher-All-Formats-v2.9.0.zip)**
+**[⬇️ Download Video Catcher All Formats — ZIP](https://github.com/MoonDevil1/Video-Catcher-All-Formats/raw/refs/heads/main/downloads/Video-Catcher-All-Formats-v2.10.0.zip)**
 
 _Unzip the download, then install through Chrome → Extensions → Developer mode → Load unpacked._
 
@@ -22,11 +22,11 @@ _Unzip the download, then install through Chrome → Extensions → Developer mo
 
 ---
 
-## 🚀 Latest release — v2.9.0
+## 🚀 Latest release — v2.10.0
 
-**[⬇️ Download the actual v2.9.0 extension ZIP](https://github.com/MoonDevil1/Video-Catcher-All-Formats/raw/refs/heads/main/downloads/Video-Catcher-All-Formats-v2.9.0.zip)** — the archive contains `manifest.json`, the extension scripts and icons, ready to extract and install via **Load unpacked**.
+**[⬇️ Download the actual v2.10.0 extension ZIP](https://github.com/MoonDevil1/Video-Catcher-All-Formats/raw/refs/heads/main/downloads/Video-Catcher-All-Formats-v2.10.0.zip)** — the archive contains `manifest.json`, the extension scripts and icons, ready to extract and install via **Load unpacked**.
 
-v2.9 adds experimental static DASH numbered-segment support, audio rendition selection, smarter video naming, and a local FFmpeg mux helper; ad filtering and browser-level playback compatibility are not guaranteed. Download only media you have permission to save.
+v2.10 adds optional smart filenames based on the detected page/video title, broader direct-media extension detection, safer extension handling, and keeps the existing quality/audio preferences and supported stream workflows. These are local convenience features inspired by common download-manager patterns; no Video DownloadHelper source code or paid entitlement logic is copied. Download only media you have permission to save.
 
 ## ✨ Features
 
@@ -71,22 +71,26 @@ v2.9 adds experimental static DASH numbered-segment support, audio rendition sel
 ╰──────────────────────────────────╯
 ```
 
-## 🎛️ Quality, format and audio
+## 🏷️ Smart filenames and quality, format and audio
+
+Smart filenames are enabled by default in **Preferences** and use the detected page/video title when available, preserving a known file extension. Turn the option off to prefer the source URL's filename. This follows a common download-manager workflow without copying proprietary extension code.
+
+
 
 Downloads of direct media preserve the file's **original video and audio streams**. No encoding or quality loss is introduced. The popup shows the source format. HLS quality choices come from the playlist's advertised variants; unavailable resolutions are not invented.
 
 ## ⚠️ Current limitations
 
 - Some unencrypted *on-demand* HLS playlists can be downloaded in original segments, but not all stream configurations work. No live, encrypted, DRM-protected, byte-range or separate-audio merging.
-- MPEG-DASH (`.mpd`) URLs are detected, but downloading DASH video/audio segments isn't implemented.
+- MPEG-DASH (`.mpd`) support is limited to clear, static manifests using supported explicit SegmentList or fixed-duration numbered SegmentTemplate layouts; audio and video may be saved separately.
 - There is **no universal format conversion**, no guaranteed MP4 output, and no way to synthesize higher quality than the source.
 - Site authorization, CORS, formats and browser restrictions can prevent successful downloads. Very large HLS streams may exceed browser memory.
-- YouTube downloads and DRM circumvention are not supported.
+- YouTube downloads and DRM circumvention are not supported. This project does not bypass any third-party paid subscription or entitlement checks.
 - Browser end-to-end testing and Chrome Web Store submission are **not yet complete**.
 
 ## 📦 Download ZIP
 
-**[⬇️ Download the latest extension ZIP (v2.9.0)](https://github.com/MoonDevil1/Video-Catcher-All-Formats/raw/refs/heads/main/downloads/Video-Catcher-All-Formats-v2.9.0.zip)**. Extract it before using **Load unpacked**. GitHub Actions also produces build artifacts.
+**[⬇️ Download the latest extension ZIP (v2.10.0)](https://github.com/MoonDevil1/Video-Catcher-All-Formats/raw/refs/heads/main/downloads/Video-Catcher-All-Formats-v2.10.0.zip)**. Extract it before using **Load unpacked**. GitHub Actions also produces build artifacts.
 
 ## 🛠️ Development
 

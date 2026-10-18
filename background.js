@@ -1,5 +1,5 @@
 const MAX_ITEMS_PER_TAB = 400;
-const FILE_EXT = /\.(mp4|m4v|webm|mkv|mov|mp3|m4a|aac|ogg|oga|opus|wav|flac|ts)(?:$|[?#])/i;
+const FILE_EXT = /\.(mp4|m4v|webm|mkv|mov|mpg|mpeg|ogv|3gp|3g2|m2ts|mts|ts|mp3|m4a|m4b|aac|ogg|oga|opus|weba|wma|wav|flac|aif|aiff|amr)(?:$|[?#])/i;
 const STREAM_EXT = /\.(m3u8|mpd)(?:$|[?#])/i;
 const MIME_RE = /^(video\/|audio\/|application\/(?:vnd\.apple\.mpegurl|x-mpegurl|dash\+xml|mp4|octet-stream))/i;
 const cache = new Map();
@@ -14,7 +14,7 @@ function classify(url, mime = '') {
   return null;
 }
 function extension(url) {
-  try { const path = new URL(url).pathname; return (path.split('.').pop() || '').slice(0, 8).toUpperCase(); }
+  try { const path = new URL(url).pathname; const match = path.match(/\.([a-z0-9]{2,8})$/i); return match ? match[1].toUpperCase() : ''; }
   catch { return ''; }
 }
 function filename(url) {
@@ -51,7 +51,15 @@ chrome.webRequest.onHeadersReceived.addListener(details => {
   const type = details.responseHeaders?.find(h => h.name.toLowerCase() === 'content-type')?.value || '';
   if (MIME_RE.test(type) && !/octet-stream/i.test(type)) void add(details.tabId, details.url, 'response', type);
 }, { urls: ['<all_urls>'], types: ['media', 'xmlhttprequest', 'other'] }, ['responseHeaders']);
-function itemTitle(item){if(!item?.title)return '';const suffix=(new URL(item.url).pathname.match(/\.[a-zA-Z0-9]{2,5}$/)||[])[0]||'';return item.title.replace(/[\\/:*?"<>|\x00-\x1F]/g,'_').slice(0,100)+suffix}
+function itemTitle(item){
+  if(!item?.title)return '';
+  let suffix='';
+  try { suffix=(new URL(item.url).pathname.match(/\.[a-zA-Z0-9]{2,8}$/)||[])[0]||''; } catch {}
+  if(!suffix && /^[a-z0-9]{2,8}$/i.test(item.ext||'')) suffix='.'+item.ext.toLowerCase();
+  let base=String(item.title).replace(/[\\/:*?"<>|\x00-\x1F]/g,'_').replace(/\s+/g,' ').trim().slice(0,100);
+  if(suffix && base.toLowerCase().endsWith(suffix.toLowerCase())) return base;
+  return base+suffix;
+}
 chrome.runtime.onMessage.addListener((msg, sender, send) => {
   (async () => {
     const id = Number.isInteger(msg.tabId) ? msg.tabId : sender.tab?.id;
@@ -99,7 +107,9 @@ chrome.runtime.onMessage.addListener((msg, sender, send) => {
     }
     if (msg.action === 'download') {
       if (!valid(msg.url) || classify(msg.url) !== 'file' || !((await load(id)).some(x => x.url === msg.url && x.type === 'file'))) return {error: 'Only direct media files can be downloaded; copy streaming manifest URLs instead.'};
-      const item=(await load(id)).find(x=>x.url===msg.url);const filenameChoice='VideoCatcher/' + (itemTitle(item) || filename(msg.url));
+      const item=(await load(id)).find(x=>x.url===msg.url);
+      const {smartFilenames=true}=await chrome.storage.local.get({smartFilenames:true});
+      const filenameChoice='VideoCatcher/' + ((smartFilenames && itemTitle(item)) || filename(msg.url));
       const downloadId = await chrome.downloads.download({url:msg.url,filename:filenameChoice,conflictAction:'uniquify',saveAs:false});
       const history=(await chrome.storage.local.get({downloadHistory:[]})).downloadHistory;
       history.unshift({id:downloadId,title:item.title||item.name||'Media',format:item.ext||'SOURCE',date:Date.now(),filename:filenameChoice});
